@@ -1,0 +1,120 @@
+
+vector <int> nearestsmallerElementright(vector<int> arr, int n){
+
+
+stack<int>st;
+
+vector<int>v2;
+
+for(int i=n-1;i>=0;i--)
+{
+    if(st.empty())
+    {
+        v2.push_back(n);
+    }
+   else if(arr[st.top()] < arr[i])
+    {
+        v2.push_back(st.top());
+    }
+    else if(!st.empty() && arr[i]<= arr[st.top()])
+    {
+        while( !st.empty() && arr[st.top()]>=arr[i])
+        {
+            st.pop();
+        }
+        if(st.empty())
+        {
+            v2.push_back(n);
+        }
+        else{
+            v2.push_back(st.top());
+        }
+    }
+
+    st.push(i);
+
+}
+
+reverse(v2.begin(),v2.end());
+
+return v2;
+
+
+
+
+}
+
+
+
+
+vector <int> nearestsmallerElementleftindex(vector<int> arr, int n){
+
+
+stack<int>st;
+
+vector<int>v2;
+
+for(int i=0;i<n;i++)
+{
+    if(st.empty())
+    {
+        v2.push_back(-1);
+    }
+   else if(arr[st.top()]<arr[i])
+    {
+        v2.push_back(st.top());
+    }
+    else if(!st.empty() && arr[i]<=arr[st.top()])
+    {
+        while( !st.empty() && arr[st.top()]>=arr[i])
+        {
+            st.pop();
+        }
+        if(st.empty())
+        {
+            v2.push_back(-1);
+        }
+        else{
+            v2.push_back(st.top());
+        }
+    }
+
+    st.push(i);
+
+}
+
+return v2;
+
+
+
+
+}
+
+
+int Solution::largestRectangleArea(vector<int> &arr) {
+    
+    int n=arr.size();
+    
+        vector <int> right= nearestsmallerElementright(arr, n);
+    
+        vector<int>left=nearestsmallerElementleftindex(arr,n);
+
+    
+    
+    vector<int >width;
+    for(int i=0;i<n;i++)
+    {
+        width.push_back(right[i]-left[i]-1);
+    }
+    
+    vector<int >area;
+    for(int i=0;i<n;i++)
+    {
+           
+            area.push_back(width[i]*arr[i]);
+        
+    }
+    int ar=*max_element(area.begin(), area.end()); 
+    
+    return ar;
+}
