@@ -1,0 +1,37 @@
+
+vector<int> Solution::postorderTraversal(TreeNode* A) {
+
+    vector<int>v;
+    stack<TreeNode*>s;
+   
+    TreeNode* curr=A;
+    TreeNode* prev=NULL;
+    while(!s.empty() || curr!=NULL){
+        if(curr!=NULL){
+            s.push(curr);
+            curr=curr->left;
+        }
+        else{
+            curr=s.top();
+            if(curr->right==NULL || curr->right==prev)
+            {
+                
+                v.push_back(curr->val);
+                s.pop();
+                prev=curr;
+                curr=NULL;
+            
+                
+                
+            }
+            else{
+                curr=curr->right;
+            }
+            
+            
+        }
+        
+        
+    }
+    return v;
+}
