@@ -1,0 +1,32 @@
+int Solution::maxArr(vector<int> &A) {
+    
+    int max_val1=INT_MIN;
+    int min_val1=INT_MAX;
+    int max_val2=INT_MIN;
+    int min_val2=INT_MAX;
+    int max_val3=INT_MIN;
+    int min_val3=INT_MAX;
+    int max_val4=INT_MIN;
+    int min_val4=INT_MAX;
+    
+    for(int i=0;i<A.size();i++)
+    {
+        max_val1=max(max_val1,A[i]+i);
+        min_val1=min(min_val1,A[i]+i);
+        
+        max_val2=max(max_val2,-A[i]+i);
+        min_val2=min(min_val2,-A[i]+i);
+        
+        max_val3=max(max_val3,-A[i]-i);
+        min_val3=min(min_val3,-A[i]-i);
+        
+        max_val4=max(max_val4,A[i]-i);
+        min_val4=min(min_val4,A[i]-i);
+    }
+    int maxsum=max( (max_val2-min_val2),(max_val4-min_val4));
+    int maxsum2=max((max_val1-min_val1),(max_val2-min_val2)  );
+    
+    return max(maxsum,maxsum2);
+    
+    
+}
