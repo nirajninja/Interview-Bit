@@ -1,0 +1,31 @@
+bool Solution::hotel(vector<int> &arr, vector<int> &brr, int K) {
+    
+    vector<pair<int,int>>v;
+    int count=0;
+    for(int i=0;i<arr.size();i++)
+    {
+        v.push_back(make_pair(arr[i],1));
+        v.push_back(make_pair(brr[i],0));
+        
+    }
+    sort(v.begin(),v.end());
+    
+    
+    for(int i=0;i<v.size();i++)
+    {
+        if(v[i].second==1)
+        {
+            count++;
+        
+            if(count>K) {
+                return false;
+            }
+        }
+        else{
+            count--;
+        }
+        
+    }
+    return true;
+    
+}
