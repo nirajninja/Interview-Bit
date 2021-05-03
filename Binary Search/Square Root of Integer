@@ -1,0 +1,33 @@
+int Solution::sqrt(int A) {
+    
+    if(A==0 || A==1)
+    {
+        return A;
+    }
+    
+    int low=1;
+    int high=A;
+    int ans;
+    int mid;
+    int x=A;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(mid == x/mid)
+        {
+            return mid;
+        }
+        if(mid< x/mid)
+        {
+            low=mid+1;
+            ans=mid;
+        }
+        else{
+            high=mid-1;
+        }
+      
+    }
+    
+return  ans;
+    
+}
