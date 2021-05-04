@@ -1,0 +1,57 @@
+
+int startindex(vector<int>v,int low,int high,int x)
+{
+    int start=low;
+    int end=high;
+    int res=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(v[mid]==x)
+        {
+            res=mid;
+            end=mid-1;
+        }
+        else if(v[mid]<x)
+        {
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return res;
+}
+
+int endindex(vector<int>v,int low,int high,int x)
+{
+    int start=low;
+    int end=high;
+    int res=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(v[mid]==x)
+        {
+            res=mid;
+            start=mid+1;
+        }
+        else if(v[mid]<x)
+        {
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return res;
+}
+vector<int> Solution::searchRange(const vector<int> &A, int B) {
+    int firstindex=startindex(A,0,A.size()-1,B);
+    int lastindex=endindex(A,0,A.size()-1,B);
+    vector<int>ans;
+    ans.push_back(firstindex);
+    ans.push_back(lastindex);
+    return ans;
+    
+}
