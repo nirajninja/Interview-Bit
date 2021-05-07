@@ -1,0 +1,48 @@
+#define ll long long int
+bool isvalid(vector<int>v,int mid,int k)
+{
+    ll sum=0;
+    ll nos=1;
+    for(int i=0;i<v.size();i++)
+    {
+        sum+=(ll)v[i];
+        if(sum>mid)
+        {
+            sum=(ll)v[i];
+            nos++;
+        }
+        if(nos>k)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+int Solution::paint(int A, int B, vector<int> &C) {
+
+ll sum=0,maxi=INT_MIN;
+for(int i=0;i<C.size();i++)
+{
+    sum+=(ll)C[i];
+    maxi=max(maxi,(ll)C[i]);
+    
+    
+}
+ll res= INT_MAX;
+ll start=maxi,end=sum;
+    while(start <= end)
+    {
+        ll mid=start+ (end-start)/2;
+        if(isvalid(C,mid,A))
+        {
+    //        res=mid;
+            res=min(mid,res);
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
+        }
+    }
+    return (int)(res%10000003*(ll)B%10000003)%10000003;
+}
