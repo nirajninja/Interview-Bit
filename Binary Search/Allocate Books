@@ -1,0 +1,71 @@
+
+bool isvalid(vector<int>v,int mid,int k)
+{
+    int nos=1;
+    int sum=0;
+    for(int i=0;i<v.size();i++)
+    {
+        sum+=v[i];
+        if(sum>mid)
+        {
+            sum=v[i];
+            nos++;
+        }
+        if(nos>k)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+int Solution::books(vector<int> &A, int B) {
+    
+    int sum=0,maximum=INT_MIN;
+    if(A.size()<B) return -1;
+    for(int i=0;i<A.size();i++)
+    {
+        sum+=A[i];
+        maximum=max(maximum,A[i]);
+        
+    }
+    int start=maximum,end=sum,res=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(isvalid(A,mid,B))
+        {
+            res=mid;
+            end=mid-1;
+        }
+        else{
+        start=mid+1;
+        }
+        
+    }
+    if(res==-1)  return -1;
+    
+    vector<int>ans;
+    int sum2=0;
+    for(int i=0;i<A.size();i++)
+    {
+        sum2+=A[i];
+        if(sum2>res)
+        {
+            sum2-=A[i];
+            ans.push_back(sum2);
+            sum2=A[i];
+        }
+        
+    }
+    ans.push_back(sum2);
+    
+    int fans=INT_MIN;
+    for(int i=0;i<ans.size();i++)
+    {
+        fans=max(fans,ans[i]);
+    }
+    return fans;
+    
+    
+}
