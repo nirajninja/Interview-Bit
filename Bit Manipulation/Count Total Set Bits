@@ -1,0 +1,25 @@
+#define  mod 1000000007
+#define ll long long 
+int largest2power(int n)
+{
+    int x=0;
+    while((1<<x)<=n)
+    {
+        x++;
+        
+    }
+    return x-1;
+}
+int Solution::solve(int A) {
+     
+    
+    if(A==0) return 0;
+    
+    ll int bitstill2x=largest2power(A);
+    ll int ans=((1<<bitstill2x-1)%mod*(bitstill2x)%mod)%mod;
+    ll int ans2=(A- (1<<bitstill2x)+1)%mod;
+    return (ans+ans2+solve(A-(1<<bitstill2x)))%mod;
+    
+    
+    
+}
