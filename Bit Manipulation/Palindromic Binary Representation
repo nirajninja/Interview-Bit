@@ -1,0 +1,40 @@
+int reverse(int n)
+{
+    int x=0;
+    while(n!=0)
+    {
+        if(n&1)
+        {
+            x=x|1;
+        }
+        n=n>>1;
+        x=x<<1;
+    }
+    x=x>>1;
+    return x;
+}
+
+int Solution::solve(int n) {
+    int count=1;
+   // if(n==1) return 1;
+    int len=1;
+    while(count<n)
+    {
+        len++;
+        count+=1<<((len-1)/2);
+        
+    }
+    count-=1<<(len-1)/2;
+    
+    int offset=n-count-1;
+    
+    int ans=1<<(len-1);
+    ans|=(offset<<(len/2));
+    
+    int valFr=ans>>(len/2);
+    
+    int rev=reverse(valFr);
+    ans|=rev;
+    return ans;
+    
+}
