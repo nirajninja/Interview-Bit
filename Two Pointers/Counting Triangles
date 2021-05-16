@@ -1,0 +1,29 @@
+#define mod 1000000007
+int Solution::nTriang(vector<int> &A) {
+    sort(A.begin(),A.end());
+    int count=0;
+    int n=A.size();
+    for(int i=n-1;i>=2;i--)
+    {
+        int a=A[i];
+        int low=0;
+        int high=i-1;
+        while(low<high)
+        {
+            if(A[low]+A[high] > a)
+            {
+                count = (count + (high - low)%mod)%mod;
+        
+                high--;
+          
+            }
+            else{
+                low++;
+            }
+            
+        }
+        
+        
+    }
+    return count;
+}
