@@ -1,0 +1,22 @@
+void Solution::merge(vector<int> &A, vector<int> &B) {
+    
+    int lastpos=A.size()+B.size()-1;
+   
+    
+    int j=B.size()-1;
+    int i=A.size()-1;
+     A.resize(A.size()+B.size());
+    
+    while(j>=0)
+    {
+        if(i>=0 && A[i]>B[j])
+        {
+            A[lastpos--]=A[i--];
+           // i--; 
+        }
+        else  {
+            A[lastpos--]=B[j--];
+            //j--;
+        }
+    }
+   }
