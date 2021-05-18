@@ -1,0 +1,47 @@
+vector<vector<int> > Solution::threeSum(vector<int> &nums) {
+        vector<vector<int>>v;
+        
+        sort(nums.begin(),nums.end());
+        long long int n=nums.size();
+        for(int i=0;i<n-2;i++)
+        {
+          if(i==0 || (i>0 && nums[i]!=nums[i-1]))
+          {
+            long long    int low=i+1,high=nums.size()-1;
+            long long int sum= -(long long int)nums[i];
+              while(low<high)
+              {
+                  long long sum2=(long long int)nums[low]+(long long int)nums[high];
+                  if(sum2==sum)
+                  {
+                      vector<int>v1;
+                      v1.push_back(nums[i]);
+                      v1.push_back(nums[low]);
+                      v1.push_back(nums[high]);
+                      v.push_back(v1);
+                      v1.clear();
+                      while(low<high && nums[low]==nums[low+1])
+                      {
+                          low++;
+                          
+                      }
+                      while(low<high && nums[high]==nums[high-1])
+                      {
+                          high--;
+                      }
+                      low++;
+                      high--;
+                  }
+                  else if(sum2 > sum)
+                  {
+                      high--;
+                  }
+                  else{
+                      low++;
+                  }
+              }
+              
+           }
+        }
+        return v;
+}
