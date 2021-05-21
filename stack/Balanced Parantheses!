@@ -1,0 +1,52 @@
+int Solution::solve(string x) {
+    stack<char>st;
+        for(int i=0;i<x.size();i++)
+        {
+            if(x[i]=='{' || x[i]=='(' || x[i]=='[')
+            {
+                st.push(x[i]);
+            }
+            else if(x[i]=='}')
+            {
+               // char top=st.top();
+                if(!st.empty() && st.top()=='{')
+                {
+                    st.pop();
+                }
+                else{
+                    return 0;
+                }
+            }
+            else if(x[i]==')')
+            {
+                if(st.top()=='('  && !st.empty() )
+                {
+                    st.pop();
+                }
+                else{
+                    return 0;
+                }
+            }
+            
+            else if(x[i]==']')
+            {
+                if(!st.empty() && st.top()=='[')
+                {
+                    st.pop();
+                }
+                else{
+                    return 0;
+                }
+            }
+            
+        }
+        
+        if(st.empty())
+        {
+            return 1;
+        }
+        return 0;
+    
+    
+    
+}
