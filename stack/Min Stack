@@ -1,0 +1,50 @@
+stack<long long>st;
+long long minele;
+MinStack::MinStack() {
+
+    while(st.size()>0) {st.pop();}
+}
+
+void MinStack::push(int x) {
+    
+    if(st.size()==0){
+        st.push(x);
+        minele=x;
+    }
+    else if(x>=minele)
+    {
+        st.push(x);
+    }
+    else if(x<minele)
+    {
+        st.push(  (long long )(2*(long long)x)-minele);
+        minele=x;
+        
+    }
+}
+
+void MinStack::pop() {
+    if(st.size()==0 ) return ;
+    //doubt is here ,
+    
+    else if(st.top()>=minele) {st.pop();}
+
+    else if(st.top()<minele) {minele=2*minele-st.top();
+    
+        st.pop();
+    }
+}
+
+int MinStack::top() {
+    if(st.size()==0 ) return -1;
+    else if(st.top()>=minele) return st.top();
+    //else if(st.top()<minele) 
+    return minele;
+}
+
+int MinStack::getMin() {
+
+    if(st.size()==0 )return -1;
+    return minele;
+}
+
