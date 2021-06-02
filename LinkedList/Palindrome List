@@ -1,0 +1,40 @@
+
+ ListNode* reverse(ListNode* head){
+     ListNode* prev=NULL;
+     ListNode* curr=head;
+     ListNode* fur=head;
+     while(fur!=NULL)
+     {
+         fur=fur->next;
+         curr->next=prev;
+         prev=curr;
+         curr=fur;
+         
+     }
+     return prev;
+ }
+ 
+ ListNode* middle(ListNode* head){
+     ListNode* slow=head;
+     ListNode* fast=head;
+     while(fast->next!=NULL && fast->next->next!=NULL)
+     {
+         slow=slow->next;
+         fast=fast->next->next;
+     }
+     return slow;
+ }
+int Solution::lPalin(ListNode* head) {
+    
+    ListNode* mid=middle(head);
+    ListNode* temphead=mid->next;
+    mid->next=NULL;
+    temphead=reverse(temphead);
+    while(temphead!=NULL && head!=NULL)
+    {
+        if(temphead->val!= head->val) return 0;
+        temphead=temphead->next;
+        head=head->next;
+    }
+    return 1;
+}
