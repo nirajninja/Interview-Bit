@@ -1,0 +1,41 @@
+
+  ListNode* insert(ListNode *head,int x)
+    {
+        if(!head) return new ListNode(x);
+        if( head->val >= x)
+        {
+            ListNode *tmp =  new ListNode(x);
+            tmp->next=head;
+            return tmp;
+        }
+        ListNode *ret=head;
+        while(head->next and head->next->val < x)
+            head=head->next;
+        ListNode *temp = new ListNode(x);
+            if(!head) 
+            {
+            head->next=temp;
+            temp->next=NULL;
+            }    
+        
+            //............................
+            //............................
+        
+        else
+        {
+            temp->next = head ->next;
+            head->next = temp;
+        }
+        return ret;
+    }
+    ListNode* Solution::insertionSortList(ListNode* head) 
+    {
+    ListNode *ans=nullptr;
+        while(head)
+        {
+            ans=insert(ans,head->val);
+            head=head->next;
+        }
+        return ans;
+    
+    }
