@@ -1,0 +1,13 @@
+
+ListNode* Solution::reverseList(ListNode* A) {
+    
+    ListNode* prev=NULL;
+    while(A!=NULL)
+    {
+        ListNode* next=A->next;
+        A->next=prev;
+        prev=A;
+        A=next;
+    }
+    return prev;
+}
