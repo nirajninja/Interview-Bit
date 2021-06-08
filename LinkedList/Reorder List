@@ -1,0 +1,59 @@
+
+ListNode* middle(ListNode* head)
+{
+    ListNode* slow=head;
+    ListNode* fast=head;
+    while(fast->next && fast->next->next)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        
+    }
+    fast=slow->next;
+    slow->next=NULL;
+    return fast;
+}
+ListNode* reverse(ListNode* head)
+{
+    ListNode* prev=NULL;
+    while(head)
+    {
+        ListNode* nex=head->next;
+        head->next=prev;
+        prev=head;
+        
+        head=nex;
+        
+        
+    }
+    return prev;
+}
+ListNode* merge(ListNode * l1,ListNode* l2)
+{
+    ListNode* head=l1;
+    ListNode* pre=l1;
+    l1=l1->next;
+  //  pre=pre->next;
+    while(l1!=NULL && l2!=NULL)
+    {
+        pre->next=l2;
+        l2=l2->next;
+        pre=pre->next;
+        
+        pre->next=l1;
+        l1=l1->next;
+        pre=pre->next;
+        
+        
+    }
+    if(l1) pre->next=l1;
+    if(l2) pre->next=l2;
+    
+    return head;
+}
+ListNode* Solution::reorderList(ListNode* A) {
+    ListNode* req=middle(A);
+    req=reverse(req);
+    
+    return merge(A,req);
+}
