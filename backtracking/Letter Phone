@@ -1,0 +1,27 @@
+vector<string> codes={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+vector<string> Solution::letterCombinations(string str) {
+
+    if(str.size()==0)
+    {
+        vector<string> bres;
+        bres.push_back("");
+        return bres;
+    }
+    
+    char ch=str[0];
+    string ros=str.substr(1);
+    vector<string>rres=letterCombinations(ros);
+    vector<string>mres;
+    
+    string codeforch=codes[ch-'0'];
+    for(int i=0;i<codeforch.size();i++)
+    {
+        char chcode=codeforch[i];
+        for(auto rstr:rres)
+        {
+            mres.push_back(chcode+rstr);
+        }
+    }
+    return mres;
+    
+}
