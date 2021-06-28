@@ -1,0 +1,73 @@
+
+bool isSafe(vector<string> &board,int A,int current_row,int current_col)
+{
+    int row=current_row,col=current_col;
+    
+    for(int j=0;j<row;j++)
+    {
+        if(board[j][col]=='Q') return false;
+    }
+    
+    while(row>=0 && col>=0)
+    {
+        if(board[row][col]=='Q') return false;
+        row--;
+        col--;
+    }
+    row=current_row,col=current_col;
+    while(row>=0 && col<A)
+    {
+        if(board[row][col]=='Q') return false;
+        row--;
+        col++;
+        
+    }
+    return true;
+}
+
+
+void generate(vector<vector<string>> &res,int A,int row,vector<string> &board)
+{
+    if(row==A)
+    {
+        res.push_back(board);
+        return;
+    }
+    
+    for(int col=0;col<A;col++)
+    {
+        if(isSafe(board,A,row,col))
+        {
+            board[row][col]='Q';
+            generate(res,A,row+1,board);
+            board[row][col]='.';
+        }
+    }
+    
+}
+
+vector<vector<string> > Solution::solveNQueens(int A) {
+    
+    vector<vector<string>>res;
+    vector<string>board(A);
+    for(int row=0;row<A;row++)
+    {
+        for(int col=0;col<A;col++)
+        {
+            board[row].push_back('.');
+        }
+    }
+    
+    generate(res,A,0,board);
+    return res;
+    
+    
+    
+    
+    
+    
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
