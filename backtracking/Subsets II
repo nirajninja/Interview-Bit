@@ -1,0 +1,43 @@
+void choose(vector<int>&A, int index, vector<int>&v1,vector<vector<int>>&ans)
+{
+    ans.push_back(v1);
+    
+    
+    for(int i=index;i<A.size();i++)
+    {
+        v1.push_back(A[i]);
+        choose(A,i+1,v1,ans);
+        v1.pop_back();
+    }
+}
+
+
+
+
+
+vector<vector<int> > Solution::subsetsWithDup(vector<int> &A) {
+    sort(A.begin(),A.end());
+    
+    vector<vector<int>>ans;
+    vector<int>v1;
+    
+    choose(A,0,v1,ans);
+    
+    set<vector<int>>s;
+    for(auto x:ans)
+    {
+        s.insert(x);
+    }
+    
+    ans.clear();
+    
+    for(auto x:s)
+    {
+        ans.push_back(x);
+    }
+    
+    
+    
+    return ans;
+    
+}
