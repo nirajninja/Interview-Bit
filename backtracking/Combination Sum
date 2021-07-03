@@ -32,3 +32,46 @@ vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) {
     
     return ans;
 }
+
+
+
+
+___________________________________________________________________________________________________
+using global vairable
+_---------------------------------------------------------------------------------------------------
+
+vector<vector<int>>ans;
+void choose(int n,int k,vector<int>&curr,int index)
+{
+    if(curr.size()==k)
+    {
+        ans.push_back(curr);
+        return ;
+    }
+    if(index>n)
+    {
+        return;
+    }
+    
+    
+    for(int i=index;i<=n;i++)
+    {
+        curr.push_back(i);
+        choose(n,k,curr,i+1);
+        curr.pop_back();
+    }
+}
+vector<vector<int> > Solution::combine(int n, int k) {
+    vector<int>curr;
+    ans.clear();
+    if(n<k)
+    {
+        return ans;
+    }
+    choose(n,k,curr,1);
+    
+    sort(ans.begin(),ans.end());
+    return ans;
+    
+}
+
