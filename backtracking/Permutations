@@ -1,0 +1,20 @@
+void backtrack(vector<int>A,vector<vector<int>> &ans,int index)
+{
+    if(index==A.size())
+    {
+        ans.push_back(A);
+        return;
+    }
+    for(int i=index;i<A.size();i++)
+    {
+        swap(A[index],A[i]);
+        backtrack(A,ans,index+1);
+        
+    }
+}
+vector<vector<int> > Solution::permute(vector<int> &A) {
+
+    vector<vector<int>>ans;
+    backtrack(A,ans,0);
+    return ans;
+}
