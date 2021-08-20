@@ -1,0 +1,59 @@
+unordered_map<string, bool>mp;
+bool solve(string a, string b)
+{
+    if(a.compare(b)==0)
+    {
+        return true;
+    }
+    int n=a.size();
+    if(n<=1)
+    {
+        return false;
+    }
+    string key=a;
+    key.append(" ");
+    key.append(b);
+    if(mp.find(key)!= mp.end())
+    {
+        return mp[key];
+    }
+    bool flag=false;
+    for(int k=1;k<n;k++)
+    {
+        bool cond1=solve(a.substr(0,k),b.substr(n-k,k)) && solve(a.substr(k,n-k) , b.substr(0,n-k));
+        bool cond2=solve(a.substr(0,k), b.substr(0,k))  && solve(a.substr(k,n-k), b.substr(k,n-k));
+        if(cond1 || cond2)
+        {
+            flag=true;
+            break;
+        }
+        if(flag)
+        {
+            return true;
+        }
+        
+        
+    }
+    
+    mp[key]=flag;
+
+    return mp[key];
+}
+
+
+int Solution::isScramble(const string A, const string B) {
+    
+    int n=A.size();
+    int m=B.size();
+    if(n!=m)
+    {
+        return 0;
+    }
+    if(A.compare(B)==0)
+    {
+        return 1;
+    }
+    return solve(A,B);
+    
+    
+}
