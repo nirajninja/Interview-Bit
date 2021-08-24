@@ -1,0 +1,16 @@
+int Solution::minDepth(TreeNode* root) {
+
+    if(root==NULL) return 0;
+    int ls=minDepth(root->left);
+    int rs=minDepth(root->right);
+    
+    if(ls==0)//we dont have left child to compare , so we jsut return rs;
+    {
+        return 1+rs;
+    }
+    else if(rs==0) // we dont have right child to compare ,so just return ls;
+    {
+        return 1+ls;
+    }
+    return 1+min(ls,rs);
+}
