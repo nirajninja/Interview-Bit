@@ -1,0 +1,33 @@
+ vector<int>v;
+ bool found(TreeNode* root, int B)
+ {
+     if(root==NULL) return false;
+     if(root->val ==B)
+     {
+         v.push_back(root->val);
+         return true;
+     }
+     if(found(root->left,B))
+     {
+         v.push_back(root->val);
+         return true;
+         
+     }
+     if(found(root->right,B))
+     {
+         v.push_back(root->val);
+         return true;
+     }
+     return false;
+     
+ }
+vector<int> Solution::solve(TreeNode* A, int B) {
+    
+    v.clear();
+    bool f=found(A,B);
+    reverse(v.begin(),v.end());
+    return v;
+    
+   // return v;
+    
+}
