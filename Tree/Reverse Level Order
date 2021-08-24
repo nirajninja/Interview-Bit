@@ -1,0 +1,28 @@
+
+vector<int> Solution::solve(TreeNode* root) {
+    vector<int>v;
+    queue<TreeNode* >q;
+    if(root==NULL) return v;
+    q.push(root);
+    while(!q.empty())
+    {
+        TreeNode* temp;
+        temp=q.front();
+        q.pop();
+        v.push_back(temp->val);
+        if(temp->right)
+        {
+            q.push(temp->right);
+            
+        }
+        if(temp->left)
+        {
+            q.push(temp->left);
+        }
+        
+    }
+    
+    reverse(v.begin(),v.end());
+    return v;
+    
+}
