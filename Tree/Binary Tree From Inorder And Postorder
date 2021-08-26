@@ -1,0 +1,24 @@
+
+ TreeNode* build(vector<int>&postorder, int ps, int pe, vector<int>&inorder, int is, int ie)
+ {
+     while(is>ie)
+     {
+         return NULL;
+     }
+     
+     int indx=is;
+     while(postorder[pe]!=inorder[indx])
+     {
+         indx++;
+     }
+     
+     TreeNode* node= new TreeNode(postorder[pe]);
+     int cols=indx-is;
+     node->left=build(postorder, ps,ps+cols-1,inorder,is,indx-1);
+     node->right= build(postorder, ps+cols,pe-1, inorder, indx+1, ie);
+     return node;
+ }
+TreeNode* Solution::buildTree(vector<int> &A, vector<int> &B) {
+int n=A.size();
+return build(B,0,n-1,A,0,n-1);
+}
