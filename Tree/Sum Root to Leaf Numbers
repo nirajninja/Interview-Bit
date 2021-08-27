@@ -1,0 +1,26 @@
+
+ int mod=1003;
+ int ans=0;
+ void  solve(TreeNode* root, int sum)
+ {
+     if(root==NULL) return;
+     
+     sum= ((sum*10)%mod + (root->val)%mod )% mod ;
+     
+     if(root->left==NULL && root->right==NULL)
+     {
+         ans = (ans+ sum)%mod;
+         return;
+     }
+     
+     solve(root->left,sum);
+     solve(root->right,sum);
+     
+     
+ }
+int Solution::sumNumbers(TreeNode* A) {
+    ans=0;
+    solve(A,0);
+
+    return ans%mod;
+}
