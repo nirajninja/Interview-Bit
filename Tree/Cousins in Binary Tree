@@ -1,0 +1,60 @@
+
+vector<int> Solution::solve(TreeNode* root, int k) {
+
+    queue<pair<TreeNode*,TreeNode*>>q;
+
+    vector<int>ans;
+    q.push({NULL,root});
+    while(!q.empty())
+    {
+        vector<pair<int,int>>v;
+        int s=q.size();
+        while(s--)
+        {
+            TreeNode* node=q.front().second;
+            q.pop();
+            if(node->left)
+            {
+                
+                q.push({node,node->left});
+                v.push_back({node->val,node->left->val});
+                
+                
+            }
+            if(node->right)
+            {
+                q.push({node,node->right});
+                v.push_back({node->val, node->right->val});
+                
+            }
+            
+            
+            
+        }
+        
+        int parent=-1;
+        for(auto it:v)
+        {
+            if(it.second==k)
+            {
+                parent=it.first;
+            
+                break;
+            }
+        }
+        if(parent!=-1)
+        {
+        for(auto it:v)
+        {
+            if(it.first!=parent)
+            {
+                ans.push_back(it.second);
+            }
+        }
+         return ans;
+    }
+   
+        
+    }
+    return ans;
+}
