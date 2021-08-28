@@ -1,0 +1,46 @@
+
+ vector<vector<int>>ans;
+ 
+ void backtrack(TreeNode* root, int target,  vector<int>&curr )
+ {
+     if(root==NULL)
+     {
+         return ;
+     }
+     
+     if(root->left==NULL && root->right==NULL)
+     {
+         if(root->val==target)
+         {
+             curr.push_back(root->val);
+             ans.push_back(curr);
+              curr.pop_back();
+        
+         }
+        return;
+     }
+     
+     if(root->left)
+     {
+         
+         curr.push_back(root->val);
+         backtrack(root->left,target-root->val , curr);
+         curr.pop_back();
+         
+     }
+     
+     if(root->right)
+     {
+         curr.push_back(root->val);
+         backtrack(root->right, target-root->val , curr);
+         curr.pop_back();
+     }
+ }
+vector<vector<int> > Solution::pathSum(TreeNode* A, int B) {
+
+    vector<int>curr;
+    ans.clear();
+    
+    backtrack(A,B,curr);
+    return ans;
+}
