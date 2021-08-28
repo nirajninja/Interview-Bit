@@ -1,0 +1,36 @@
+
+vector<int> Solution::solve(TreeNode* A) {
+    
+    vector<int>ans;
+    if(A==NULL) return ans;
+    queue<TreeNode*>q;
+    q.push(A);
+      vector<int>smallans;
+    while(!q.empty())
+
+    {
+        
+        int s=q.size();
+      
+        while(s--)
+        {
+        
+        TreeNode* rn=q.front();
+        q.pop();
+        while(rn!=NULL)
+        {
+            smallans.push_back(rn->val);
+            if(rn->left)
+            {
+                q.push(rn->left);
+            }
+            rn=rn->right;
+        }
+        
+        }
+      //  ans.push_back(smallans);
+        
+         
+    }
+    return smallans;
+}
