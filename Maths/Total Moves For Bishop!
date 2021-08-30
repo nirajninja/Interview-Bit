@@ -1,0 +1,40 @@
+int Solution::solve(int x, int y) {
+    int i,j;
+    int cnt=0;
+    
+    
+    i=1;j=1;
+    while(x+i <=8 &&  y+j<=8)
+    {
+        i++;
+        j++;
+        cnt++;
+    }
+    
+    i=1;j=1;
+    while(x+i <=8 &&  y-j>0)
+    {
+        i++;
+        j++;
+        cnt++;
+    }
+    
+    i=1;j=1;
+    while(x-i >0 &&  y-j>0)
+    {
+        i++;
+        j++;
+        cnt++;
+    }
+    
+    i=1;j=1;
+    while(x-i > 0 &&  y+j<=8)
+    {
+        i++;
+        j++;
+        cnt++;
+    }
+    
+    return cnt;
+    
+}
