@@ -1,0 +1,47 @@
+int maxt=0;
+ void burntree(TreeNode* root, TreeNode* blocker, int t)
+ {
+     if(root==NULL || root==blocker)
+     {
+         return ;
+     }
+     maxt=max(maxt,t);
+     burntree(root->left, blocker,  t+1);
+     burntree(root->right,blocker, t+1);
+ }
+ 
+ int burningtree(TreeNode* root, int firenode)
+ {
+     
+    if(root==NULL )
+    {
+        return -1;
+    }
+    
+    if(root->val == firenode)
+    {
+        burntree(root,NULL,0);
+        return 1;
+    }
+    int lefttime=burningtree(root->left,firenode);
+    if(lefttime!=-1)
+    {
+        burntree(root,root->left,lefttime);
+    
+        return lefttime+1;
+    }
+    int righttime=burningtree(root->right,firenode);
+    if(righttime!=-1)
+    {
+        burntree(root,root->right,righttime);
+        return righttime+1;
+        
+    }
+    
+    return -1;
+ }
+int Solution::solve(TreeNode* root, int firenode) {
+    maxt=0;
+    burningtree(root,firenode);
+    return maxt;
+}
