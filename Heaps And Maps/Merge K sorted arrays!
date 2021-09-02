@@ -1,0 +1,28 @@
+vector<int> Solution::solve(vector<vector<int> > &A) {
+    
+     
+    priority_queue<pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>> > minh;
+    vector<int>v;
+    for(int i=0;i<A.size();i++)
+    {
+        minh.push( { A[i][0], {i,0} } );
+    }
+  
+    int k=A[0].size();
+    while(minh.size() > 0)
+    {
+        int t=minh.top().first;
+        int i=minh.top().second.first;
+        int j=minh.top().second.second;
+        v.push_back(t);
+        minh.pop();
+        
+        if(j+1 < k)
+        {
+         minh.push({A[i][j+1],{i,j+1}});
+    
+        }
+        
+    }
+    return v;
+}
