@@ -1,0 +1,18 @@
+int Solution::nchoc(int A, vector<int> &B) {
+    
+    int mod=1e9+7;
+    long long  ans=0;
+    priority_queue<int>mp;
+    for(int i=0;i<B.size();i++)
+    {
+        mp.push(B[i]);
+    }
+    while(A--)
+    {
+        int k=mp.top();
+        mp.pop();
+        mp.push((k/2));
+        ans=(ans+ k)%mod;
+    }
+    return ans%mod;
+}
