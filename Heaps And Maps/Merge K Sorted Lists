@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+
+    struct comp 
+    {
+        bool operator()(ListNode* a, ListNode* b)
+    {
+        return a->val > b->val;
+    }
+};
+ListNode* Solution::mergeKLists(vector<ListNode*> &A) {
+    
+    priority_queue<ListNode*, vector<ListNode*>, comp> mp;
+    ListNode* temp=new ListNode(0);
+    ListNode*head=temp;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]!=NULL)
+        {
+            mp.push(A[i]);
+        }
+    }
+    
+    while(mp.size()>0)
+    {
+        ListNode* ele=mp.top();
+        mp.pop();
+        
+        temp->next=ele;
+        temp=temp->next;
+        
+        if(ele->next)
+        {
+            mp.push(ele->next);
+        }
+    }
+    return head->next;
+    
+    
+    
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+}
