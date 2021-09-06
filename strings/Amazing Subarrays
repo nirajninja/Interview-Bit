@@ -1,0 +1,16 @@
+int Solution::solve(string A) {
+    int mod=10003;
+    int n=A.size();
+    int ans=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]=='A' || A[i]=='O'|| A[i]=='U'|| A[i]=='E'|| A[i]=='I'  ||
+        A[i]=='a' || A[i]=='o'|| A[i]=='u'|| A[i]=='e'|| A[i]=='i' )
+    
+        {
+            ans= (ans + (n-i))%mod;
+        }
+    }
+    return ans;
+    
+}
