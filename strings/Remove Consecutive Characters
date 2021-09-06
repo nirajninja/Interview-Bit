@@ -1,0 +1,29 @@
+string Solution::solve(string A, int B) {
+    
+    string c="";
+    int count=1;
+    int i;
+    for( i=0;i<A.size()-1;i++)
+    {
+        c+=A[i];
+        if(count==B)
+        {
+            count=1;
+            c.erase(c.end()-B , c.end());
+        }
+        if(A[i]==A[i+1])
+        {
+            count++;
+        }
+        
+        
+    }
+    c+=A[i];
+        if(count==B)
+        {
+            count=1;
+            c.erase(c.end()-B , c.end());
+        }
+    
+    return c;
+}
