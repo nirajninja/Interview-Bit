@@ -1,0 +1,67 @@
+bool isVowel(char ch)
+{
+    return (ch == 'a' || ch == 'e' ||
+            ch == 'i' || ch == 'o' ||
+            ch == 'u');
+}
+
+bool isCons(char ch)
+{
+    return (ch != 'a' && ch != 'e' &&
+            ch != 'i' && ch != 'o' &&
+            ch != 'u');
+}
+int Solution::solve(string A) {
+    int mod=1e9+7;
+    
+    int n=A.size();
+    int vowel[n]={0};
+    int consonant[n]={0};
+    
+    if(isVowel(A[n-1]))
+    {
+        vowel[n-1]=1;
+        consonant[n-1]=0;
+    }
+    else{
+        vowel[n-1]=0;
+        consonant[n-1]=1;
+    }
+    
+    for(int i=n-2;i>=0;i--)
+    {
+        if(isVowel(A[i]))
+        {
+            vowel[i]=1+vowel[i+1];
+        }
+        else{
+            vowel[i]=vowel[i+1];
+        }
+    }
+    
+    
+    for(int i=n-2;i>=0;i--)
+    {
+        if(isCons(A[i]))
+        {
+            consonant[i]=1+consonant[i+1];
+        }
+        else{
+            consonant[i]=consonant[i+1];
+        }
+    }
+    
+    
+    int ans=0;
+    for(int i=0;i<n;i++)
+    {
+        if(isVowel(A[i]))
+        {
+            ans= (ans+consonant[i])%mod;
+        }
+        else{
+            ans= (ans+ vowel[i])%mod;
+        }
+    }
+    return ans;
+}
