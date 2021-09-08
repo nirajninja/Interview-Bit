@@ -1,0 +1,21 @@
+string Solution::intToRoman(int num) {
+
+
+ int arr[13]={1,4,5,9,10,40,50,90,100,400,500,900,1000};
+        string roman[13]={"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"};
+        
+        int i=12;
+        string ans="";
+        while(i>=0 && num>0)
+        {
+            if(arr[i]<=num)
+            {
+                num-=arr[i];
+                ans+=roman[i];
+            }
+            else{
+                i--;
+            }
+        }
+        return ans;    
+}
