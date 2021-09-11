@@ -1,0 +1,89 @@
+string Solution::addBinary(string A, string B) {
+    
+      
+        string br="";
+        int p=0;
+        int i=A.size()-1;
+        int j=B.size()-1;
+        
+        while(i>=0 && j>=0)
+        {
+            int a=A[i]-'0';
+            int b=B[j]-'0';
+            
+            int ans=p+a+b;
+			 if(ans ==0){
+				 br+="0";
+				 p=0;
+			 }
+            else if(ans==1)
+            {
+                br+="1";
+                p=0;
+            }
+            else if(ans==2){
+				 br+="0";
+				 p=1;
+			 }else{
+				 br+="1";
+				 p=1;
+
+			 }
+			 i--;
+			 j--;
+        }
+        
+        while(i>=0)
+        {
+            int a=A[i]-'0';
+			int ans=p+a;
+
+			if(ans==0)
+			{
+				br+="0";
+				p=0;
+			}
+           else if(ans==1)
+			{
+				br+="1";
+				p=0;
+			}
+            
+            else{
+                
+				br+="0";
+                p=1;
+			}
+			i--;
+        }
+        
+         
+        while(j>=0)
+        {
+            int a=B[j]-'0';
+			int ans=p+a;
+
+		if(ans==0)
+			{
+				br+="0";
+				p=0;
+			}
+           else if(ans==1)
+			{
+				br+="1";
+				p=0;
+			}
+            
+            else{
+                
+				br+="0";
+                p=1;
+			}
+			j--;
+        }
+        
+        if(p==1) br+="1";
+		reverse(br.begin(),br.end());
+        return br;//.toString();
+        
+}
