@@ -1,0 +1,52 @@
+-------------------------------------------------------
+stack
+--------------------------------------------------------
+int Solution::solve(string A) {
+
+    int c1=0;
+    int c2=0;
+    stack<char>s;
+    int k=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]=='(')
+        {
+            s.push('(');
+        }
+        else if(A[i]==')')
+        {
+            if(!s.empty() && s.top()=='(')
+            {
+                s.pop();
+            }
+            else{
+                k++;
+            }
+        }
+    }
+    return s.size()+k;
+}
+--------------------------------------------------------------------------
+adhoc
+---------------------------------------------------------------------------
+int Solution::solve(string A) {
+
+int open=0,close=0;
+for(int i=0;i<A.size();i++)
+
+{
+    if(A[i]=='(')
+    {
+        open++;
+    }
+    else{
+        if(open>0) open--;
+        else{
+            close++;
+        }
+    }
+    
+}
+
+return close+open;
+}
